@@ -10,13 +10,11 @@
       </ul>
     </div>
   <% end %>
-  <%= f.inputs do %>
-    <%= f.input :name %>
-    <%= f.semantic_fields_for :phonenumber do |p| %>
-      <%= p.input :number %>
-    <% end %>
+  <%= f.inputs %>
+  <%= f.inputs :for => [:phonenumber, @person.phonenumber] do |p| %>
+    <%= p.inputs %>
   <% end %>
-
+  
   <%= f.buttons do %>
     <%= f.commit_button %>
   <% end %>
