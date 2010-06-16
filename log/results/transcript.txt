@@ -1,0 +1,144 @@
+▶ uname -a                                                                                                 
+Darwin mistake.local 10.4.0 Darwin Kernel Version 10.4.0: Fri Apr 23 18:28:53 PDT 2010; root:xnu-1504.7.4~1/RELEASE_I386 i386
+▶ which ruby                                                                                               
+/opt/local/bin/ruby
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(ryan) 
+▶ ruby -v                                                                                                  
+ruby 1.8.7 (2010-01-10 patchlevel 249) [i686-darwin10]
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(ryan) 
+▶
+→ git clone git@github.com:aguynamedryan/formtastic-test.git                                              
+Initialized empty Git repository in /Users/ryan/oss/formtastic-test/.git/
+remote: Counting objects: 125, done.
+remote: Compressing objects: 100% (83/83), done.
+remote: Total 125 (delta 25), reused 125 (delta 25)
+Receiving objects: 100% (125/125), 87.91 KiB, done.
+Resolving deltas: 100% (25/25), done.
+Ξ ryan@mistake.local:/Users/ryan/oss 
+→ cd formtastic-test                                                                                      
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(master) 
+▶ git fetch origin ryan:ryan                                                                              
+From github.com:aguynamedryan/formtastic-test
+ * [new branch]      ryan       -> ryan
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(master) 
+▶ git checkout ryan                                                                                       
+Switched to branch 'ryan'
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(ryan) 
+▶ bundle install                                                                                          
+Fetching http://github.com/justinfrench/formtastic.git
+remote: Counting objects: 3997, done.
+remote: Compressing objects: 100% (2193/2193), done.
+remote: Total 3997 (delta 2278), reused 2912 (delta 1536)
+Receiving objects: 100% (3997/3997), 678.85 KiB | 198 KiB/s, done.
+Resolving deltas: 100% (2278/2278), done.
+Fetching source index from http://rubygems.org/
+Updating http://github.com/justinfrench/formtastic.git
+Using rake (0.8.7) from system gems 
+Using abstract (1.0.0) from system gems 
+Using activesupport (3.0.0.beta4) from system gems 
+Using builder (2.1.2) from system gems 
+Using i18n (0.4.1) from system gems 
+Using activemodel (3.0.0.beta4) from system gems 
+Using erubis (2.6.5) from system gems 
+Using rack (1.1.0) from system gems 
+Using rack-mount (0.6.4) from system gems 
+Using rack-test (0.5.4) from system gems 
+Using tzinfo (0.3.22) from system gems 
+Using actionpack (3.0.0.beta4) from system gems 
+Using mime-types (1.16) from system gems 
+Using polyglot (0.3.1) from system gems 
+Using treetop (1.4.8) from system gems 
+Installing mail (2.2.4) from rubygems repository at http://rubygems.org/ 
+Using actionmailer (3.0.0.beta4) from system gems 
+Using arel (0.4.0) from system gems 
+Using activerecord (3.0.0.beta4) from system gems 
+Using activeresource (3.0.0.beta4) from system gems 
+Using bundler (0.9.26) from system gems 
+Using formtastic (1.0.0.beta) from http://github.com/justinfrench/formtastic.git (at rails3) 
+Using thor (0.13.6) from system gems 
+Using railties (3.0.0.beta4) from system gems 
+Using rails (3.0.0.beta4) from system gems 
+Installing sqlite3-ruby (1.3.0) from rubygems repository at http://rubygems.org/ with native extensions 
+Your bundle is complete! Use `bundle show [gemname]` to see where a bundled gem is installed.
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(ryan) 
+▶ rake db:migrate                                                                                         
+(in /Users/ryan/oss/formtastic-test)
+==  CreatePeople: migrating ===================================================
+-- create_table(:people)
+   -> 0.0011s
+==  CreatePeople: migrated (0.0012s) ==========================================
+
+==  CreatePhonenumbers: migrating =============================================
+-- create_table(:phonenumbers)
+   -> 0.0012s
+==  CreatePhonenumbers: migrated (0.0013s) ====================================
+
+Ξ ryan@mistake.local:/Users/ryan/oss/formtastic-test git:(ryan) 
+▶ rails server                                                                                            
+
+Navigated to localhost:3000
+Clicked New Person
+	screen1.png
+	new.html
+Entered name => ryan, number => 555-8888
+Clicked 'Create Person'
+	screen2.png
+Clicked on edit link for new person
+	screen3.png
+	edit.html
+
+
+
+=> Booting WEBrick
+=> Rails 3.0.0.beta4 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+[2010-06-15 17:12:01] INFO  WEBrick 1.3.1
+[2010-06-15 17:12:01] INFO  ruby 1.8.7 (2010-01-10) [i686-darwin10]
+[2010-06-15 17:12:01] INFO  WEBrick::HTTPServer#start: pid=43045 port=3000
+
+
+Started GET "/" for 127.0.0.1 at Tue Jun 15 17:14:16 -0700 2010
+  Processing by PeopleController#index as HTML
+  Person Load (0.3ms)  SELECT "people".* FROM "people"
+Rendered people/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 13ms (Views: 5.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/people/new" for 127.0.0.1 at Tue Jun 15 17:14:20 -0700 2010
+  Processing by PeopleController#new as HTML
+  Person Load (0.3ms)  SELECT "people".* FROM "people"
+Rendered people/_form.html.erb (17.2ms)
+Rendered people/new.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 102ms (Views: 25.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/people" for 127.0.0.1 at Tue Jun 15 17:15:17 -0700 2010
+  Processing by PeopleController#create as HTML
+  Parameters: {"commit"=>"Create Person", "person"=>{"name"=>"ryan", "phonenumber_attributes"=>{"number"=>"555-8888", "person_id"=>""}}, "authenticity_token"=>"2uMLHPjIBMLk33OEGJ17EIgaZpYyCRH1Sb3KQbIO0qQ="}
+  SQL (0.4ms)  INSERT INTO "people" ("created_at", "name", "updated_at") VALUES ('2010-06-16 00:15:17.304634', 'ryan', '2010-06-16 00:15:17.304634')
+  SQL (0.1ms)  INSERT INTO "phonenumbers" ("created_at", "number", "person_id", "updated_at") VALUES ('2010-06-16 00:15:17.308303', '555-8888', 1, '2010-06-16 00:15:17.308303')
+Redirected to http://localhost:3000/people/1
+Completed 302 Found in 25ms
+
+
+Started GET "/people/1" for 127.0.0.1 at Tue Jun 15 17:15:17 -0700 2010
+  Processing by PeopleController#show as HTML
+  Parameters: {"id"=>"1"}
+  Person Load (0.2ms)  SELECT "people".* FROM "people" WHERE ("people"."id" = 1) LIMIT 1
+  Phonenumber Load (0.4ms)  SELECT "phonenumbers".* FROM "phonenumbers" WHERE ("phonenumbers".person_id = 1) LIMIT 1
+Rendered people/show.html.erb within layouts/application (8.8ms)
+Completed 200 OK in 93ms (Views: 13.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/people/1/edit" for 127.0.0.1 at Tue Jun 15 17:15:28 -0700 2010
+  Processing by PeopleController#edit as HTML
+  Parameters: {"id"=>"1"}
+  Person Load (0.2ms)  SELECT "people".* FROM "people" WHERE ("people"."id" = 1) LIMIT 1
+  Phonenumber Load (0.2ms)  SELECT "phonenumbers".* FROM "phonenumbers" WHERE ("phonenumbers".person_id = 1) LIMIT 1
+  Person Load (0.4ms)  SELECT "people".* FROM "people"
+  CACHE (0.0ms)  SELECT "phonenumbers".* FROM "phonenumbers" WHERE ("phonenumbers".person_id = 1) LIMIT 1
+Rendered people/_form.html.erb (72.4ms)
+Rendered people/edit.html.erb within layouts/application (76.6ms)
+Completed 200 OK in 96ms (Views: 78.7ms | ActiveRecord: 0.6ms)
+
